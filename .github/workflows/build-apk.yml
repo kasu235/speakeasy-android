@@ -22,11 +22,14 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
+      - name: Accept Android SDK Licenses
+        run: |
+          yes | sdkmanager --licenses > /dev/null
+
       - name: Build Debug APK
         run: |
           cd speakeasy-android
-          gradle wrapper --gradle-version 8.4
-          chmod +x gradlew
+          export GRADLE_OPTS="-Xmx2048m -Dorg.gradle.jvmargs=-Xmx2048m"
           ./gradlew assembleDebug --stacktrace
 
       - name: Upload APK
