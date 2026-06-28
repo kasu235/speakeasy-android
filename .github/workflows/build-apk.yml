@@ -26,9 +26,15 @@ jobs:
         run: |
           yes | sdkmanager --licenses > /dev/null
 
+      - name: Generate Gradle Wrapper
+        run: |
+          cd speakeasy-android
+          gradle wrapper --gradle-version 8.4
+
       - name: Build Debug APK
         run: |
           cd speakeasy-android
+          chmod +x gradlew
           export GRADLE_OPTS="-Xmx2048m -Dorg.gradle.jvmargs=-Xmx2048m"
           ./gradlew assembleDebug --stacktrace
 
