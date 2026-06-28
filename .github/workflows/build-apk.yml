@@ -19,12 +19,17 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Android SDK
+      - name: Setup Android SDK with Licenses
         uses: android-actions/setup-android@v3
+        with:
+          cmdline-tools-version: 9.0
 
-      - name: Accept Android SDK Licenses
+      - name: Accept Licenses
         run: |
-          yes | sdkmanager --licenses > /dev/null
+          mkdir -p $ANDROID_HOME/licenses
+          echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" >> $ANDROID_HOME/licenses/android-sdk-license
+          echo "d56f5187479451eabf01fb78af6dfcb131a6481e" >> $ANDROID_HOME/licenses/android-sdk-license
+          echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" >> $ANDROID_HOME/licenses/android-sdk-preview-license
 
       - name: Generate Gradle Wrapper
         run: |
