@@ -14,9 +14,7 @@
     <application
         android:name=".EnglishPracticeApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
         android:label="SpeakEasy"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EnglishPractice"
         tools:targetApi="34">
